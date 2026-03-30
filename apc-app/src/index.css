@@ -1,0 +1,114 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600&family=Raleway:wght@400;500;600;700;800&display=swap');
+@import "tailwindcss";
+
+:root {
+  --maroon: #990000;
+  --blue: #336699;
+  --dark-border: #770000;
+  --body-text: #666666;
+  --meta-text: #919191;
+  --bg: #ffffff;
+  --alt-bg: #f3f3f3;
+  --border: #e1e1e1;
+  --on-primary: #ffffff;
+  --sidebar-bg: #1a1a1a;
+}
+
+* { box-sizing: border-box; }
+body {
+  margin: 0;
+  font-family: 'Open Sans', sans-serif;
+  color: var(--body-text);
+  background: var(--alt-bg);
+}
+h1,h2,h3,h4,h5,h6 { font-family: 'Raleway', sans-serif; color: #333; margin: 0; }
+
+#root { max-width: 100%; margin: 0; text-align: left; }
+
+/* Page containers for proposal pages */
+.page-portrait {
+  width: 8.5in;
+  height: 11in;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  margin: 0 auto 24px auto;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.page-landscape {
+  width: 11in;
+  height: 8.5in;
+  background: white;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.12);
+  margin: 0 auto 24px auto;
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+
+/* Editable elements */
+[contenteditable] { outline: none; cursor: text; }
+[contenteditable]:hover { outline: 2px dashed rgba(51,102,153,0.3); outline-offset: 2px; }
+[contenteditable]:focus { outline: 2px solid var(--blue); outline-offset: 2px; }
+
+/* Preview mode hides edit affordances */
+.preview-mode [contenteditable]:hover { outline: none; }
+.preview-mode [contenteditable]:focus { outline: none; }
+.preview-mode [contenteditable] { cursor: default; }
+
+/* Scrollbar styling for sidebar */
+.sidebar-scroll::-webkit-scrollbar { width: 6px; }
+.sidebar-scroll::-webkit-scrollbar-track { background: transparent; }
+.sidebar-scroll::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.2); border-radius: 3px; }
+
+/* Print styles */
+@media print {
+  body { background: white !important; margin: 0 !important; }
+  .no-print, nav, .sidebar, .template-modal, .editor-sidebar { display: none !important; }
+  .page-portrait, .page-landscape {
+    box-shadow: none !important;
+    margin: 0 !important;
+    page-break-after: always;
+    page-break-inside: avoid;
+  }
+  .page-portrait { width: 100% !important; height: auto !important; min-height: 100vh; }
+  .page-landscape { width: 100% !important; height: auto !important; min-height: 100vh; }
+  [contenteditable]:hover, [contenteditable]:focus { outline: none !important; }
+  .editor-main { padding: 0 !important; margin: 0 !important; overflow: visible !important; }
+  .editor-wrapper { display: block !important; }
+  @page { margin: 0; size: letter; }
+  @page landscape-page { size: letter landscape; }
+  .page-landscape { page: landscape-page; }
+}
+
+/* Photo placeholder styling */
+.photo-placeholder {
+  background: linear-gradient(135deg, #e8e8e8 0%, #d0d0d0 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #aaa;
+  font-size: 0.75rem;
+  position: relative;
+}
+.photo-placeholder::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    45deg,
+    transparent,
+    transparent 10px,
+    rgba(0,0,0,0.02) 10px,
+    rgba(0,0,0,0.02) 20px
+  );
+  pointer-events: none;
+}
+
+/* Page internal typography */
+.page-portrait, .page-landscape {
+  font-size: 9pt;
+  line-height: 1.4;
+}
+.page-portrait p, .page-landscape p { margin: 0 0 0.4em 0; }
