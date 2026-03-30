@@ -1,0 +1,6 @@
+{
+  "buildCommand": "npm run build --prefix apc-app",
+  "outputDirectory": "apc-app/dist",
+  "installCommand": "npm install --prefix apc-app",
+  "framework": "vite"
+}
